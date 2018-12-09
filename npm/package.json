@@ -1,0 +1,18 @@
+{
+    "author": "Sankar",
+    "description": "NPM package manager",
+    "keywords": [
+        "node",
+        "npm",
+        "package_manager"
+    ],
+    "license": "MIT",
+    "version": "1.0.0",
+    "dependencies": {
+        "express": "^4.16.4"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/GaurisankarJ/Node.git"
+    }
+}
