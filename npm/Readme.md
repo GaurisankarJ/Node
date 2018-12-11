@@ -120,3 +120,20 @@ route: POST '/library'
 urlencoded_body: userId=546&bookId=6754 
 req.body: {userId: '546', bookId: '6754'}
 ```
+# MongoDB
+
+>Reference Mongoose: https://mongoosejs.com/docs/guide.html
+
+>http://localhost:27017/
+
+## Run MongoDB
+
+```
+mongod --dbpath <path to data directory>
+```
+
+## Begin using MongoDB
+
+```
+mongo
+```

@@ -4,6 +4,8 @@ require("dotenv").config();
 //To load BodyParser
 var bodyParser = require("body-parser");
 var app = express();
+//Load MongoDB
+var mongoose = require("mongoose");
 
 //Logger
 app.use((req, res, next) => {
@@ -68,6 +70,41 @@ app.post("/name", (req, res) => {
     res.json({
         "name": firstName + " " + lastName
     });
+});
+//Connect to MongoDB
+mongoose.connect(process.env.MONGO_URI);
+//Creating a Schema
+var Schema = mongoose.Schema;
+var personSchema = new Schema({
+    name: { type: String, required: true },
+    age: { type: Number, default: 0 },
+    favoriteFoods: [{ type: String }]
+});
+//Creating a Model
+var Person = mongoose.model("Person", personSchema);
+//Create and Save the record/records of a model
+var person = new Person({ name: "Ben", age: 23, favoriteFoods: ["tuna", "bread"] });
+person.save((err, result) => {
+    if (err) {
+        return err;
+    } else {
+        console.log(result);
+    }
+});
+Person.create([{
+    name: "Joe",
+    age: 24,
+    favoriteFoods: ["Apple", "Banana"]
+}, {
+    name: "Sam",
+    age: 22,
+    favoriteFoods: ["Peach", "Rock"]
+}], function(err, result) {
+    if(err) {
+        return err;
+    } else {
+        console.log(result);
+    }
 });
 //To listen on port 3000
 app.listen(3000);
