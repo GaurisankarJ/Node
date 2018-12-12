@@ -1,3 +1,5 @@
+"use strict";
+
 var express = require("express");
 //To load .env
 require("dotenv").config();
@@ -71,6 +73,8 @@ app.post("/name", (req, res) => {
         "name": firstName + " " + lastName
     });
 });
+
+//MongoDB
 //Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI);
 //Creating a Schema
@@ -82,30 +86,86 @@ var personSchema = new Schema({
 });
 //Creating a Model
 var Person = mongoose.model("Person", personSchema);
-//Create and Save the record/records of a model
-var person = new Person({ name: "Ben", age: 23, favoriteFoods: ["tuna", "bread"] });
-person.save((err, result) => {
-    if (err) {
-        return err;
-    } else {
-        console.log(result);
-    }
-});
-Person.create([{
+//CRUD(Create, Read, Update and Delete)
+//Create and Save a record of a model
+var createAndSavePerson = (done) => {
+    var person = new Person({ 
+        name: "Sam", 
+        age: 23, 
+        favoriteFoods: ["Rock", "Bread"] 
+    });
+    person.save((err, data) => (err)? done(err): done(null, data));
+};
+createAndSavePerson(console.log);
+//Create and Save multiple records of a model
+var createManyPeople = (arrayOfPeople, done) => {
+    Person.create(arrayOfPeople, (err, data) => (err)? done(err): done(null, data));
+};
+let people = [{
     name: "Joe",
     age: 24,
     favoriteFoods: ["Apple", "Banana"]
-}, {
+  },
+  {
     name: "Sam",
     age: 22,
     favoriteFoods: ["Peach", "Rock"]
-}], function(err, result) {
-    if(err) {
-        return err;
-    } else {
-        console.log(result);
-    }
-});
+}];
+createManyPeople(people, console.log);
+//Search your database
+var findPeopleByName = (personName, done) => {
+    Person.find({ name: personName }, (err, data) => (err)? done(err): done(null, data));
+};
+findPeopleByName("Sam", console.log);
+//Return a single matching record from your database
+var findOneByFood = (food, done) => {
+    Person.findOne({ favoriteFoods: food }, (err, data) => (err)? done(err): done(null, data));
+};
+findOneByFood("Rock", console.log);
+//Search database by _id
+var findPersonById = (personId, done) => {
+    Person.findById(personId, (err, data) => (err)? done(err): done(null, data));
+};
+findPersonById("5c114cf35d75670c5c0c41a8", console.log);
+//Perform Classic Updates by running Find, Edit, then Save(without using Model.update())
+var findEditThenSave = (personId, done) => {
+    let foodToAdd = "Hamburger";
+    Person.findById(personId, (err, data) => {
+        if(err) {
+            done(err);
+        } else {
+            data.favoriteFoods.push(foodToAdd);
+            data.save((err, data) => (err)? done(err): done(null, data))
+        }
+    });
+};
+findEditThenSave("5c114cf35d75670c5c0c41a8", console.log);
+//Perform Updates on a single record
+var findAndUpdateOne = (personName, done) => {
+    let ageToSet = 20;
+    Person.findOneAndUpdate({ name: personName }, { age: ageToSet }, { new: true }, (err, data) => (err)? done(err): done(null, data));//findByIdAndUpdate() can be used when searching by Id
+    //By default the method passes the unmodified object to its callback, you need to pass { new: true } as the 3rd argument to get the updated object
+};
+findAndUpdateOne("Joe", console.log);
+//Delete one record
+var removeById = (personId, done) => {
+    Person.findByIdAndRemove(personId, (err, data) => (err)? done(err): done(null, data));//findOneAndRemove()
+};
+removeById("5c114cf35d75670c5c0c41a8", console.log);
+//Delete many records
+var removeMany = (nameToRemove, done) => {
+    Person.deleteMany({ name: nameToRemove }, (err, data) => (err)? done(err): done(null, data));
+};
+removeMany("Sam", console.log);
+//Chain Search Query Helpers to Narrow Search Results
+var queryChain = (foodToSearch, done) => {
+    //You can store the query in a variable for later use, this kind of object enables you to build up a query using chaining syntax
+    Person.find({ favoriteFoods: foodToSearch }).sort({ name: 1 }).limit(2).select({ age: 0 }).exec((err, data) => (err)? done(err): done(null, data)); 
+    //sort, 1 for ascending, -1 for descending
+    //select, 0 means hide, 1 means show
+    //exec(callback), at the end to execute with callback
+};
+queryChain("Apple", console.log);
 //To listen on port 3000
 app.listen(3000);
 
