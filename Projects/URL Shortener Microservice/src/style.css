@@ -31,7 +31,7 @@ code {
   border-radius: 5px;
   padding: 2px;
   color: black;
-  background-color: #fff;
+  background-color: rgb(83, 82, 82);
 }
 ol {
 	list-style-position: inside;
