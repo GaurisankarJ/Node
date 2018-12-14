@@ -40,10 +40,57 @@ URL.create(initialData, (err, data) => {
         console.log("Initialized!");
     }
 });
+//NodeJS
+var checkDB = (originalURL, res) => {
+    URL.findOne({ original_url: originalURL }, (err, data) => {
+        if(err) {
+            console.log(err);
+        } else {
+            if(data == null) {
+                var shortURL = Math.floor(Math.random() * 100).toString();
+                var addURL = new URL({
+                    original_url: originalURL,
+                    short_url: shortURL
+                });
+                addURL.save((err, data) => {
+                    if(err) {
+                        console.log(err);
+                    } else {
+                        console.log("Record Added!");
+                    }
+                });
+                res.json({
+                    "original_url": originalURL,
+                    "short_url": shortURL
+                });
+            } else {
+                res.json({
+                  original_url: data.original_url,
+                  short_url: data.short_url
+                });
+            }
+        }
+    });
+};
+app.post("/api/shorturl/new", (req, res) => {
+    var originalURL = req.body.url;
+    var regex = /^(http|https):\/\/www\.[\w.-]+\.com$/;
+    if(regex.test(originalURL)) {
+        dns.lookup(originalURL.slice(originalURL.indexOf("w")), (err, addresses, family) => {
+            if(err == null) {
+                checkDB(originalURL, res);
+            } else {
+                res.json({
+                    "error": "Invalid URL"
+                });
+            }
+        });
+    }
+});
 app.get("/:shortURL(*)", (req, res) => {
     var shortURL = req.params.shortURL;
     URL.findOne({ short_url: shortURL }, (err, data) => {
-        if(err) {
+        if (err) {
             console.log(err);
         } else {
             if (data == null) {
@@ -55,51 +102,6 @@ app.get("/:shortURL(*)", (req, res) => {
             }
         }
     });
-    console.log(shortURL);
-});
-app.post("/api/shorturl/new", (req, res, next) => {
-    var originalURL = req.body.url;
-    var regex = /^http:\/\/www\.[\w.-]+\.com$/;
-    if(regex.test(originalURL)) {
-        URL.findOne({ original_url: originalURL }, (err, data) => {
-            if(err) {
-                console.log(err);
-            } else {
-                if(data == null) {
-                    var shortURL = Math.floor(Math.random() * 100).toString();
-                    var addURL = new URL({
-                        original_url: originalURL,
-                        short_url: shortURL
-                    });
-                    addURL.save((err, data) => {
-                        if(err) {
-                            console.log(err);
-                        } else {
-                            console.log("Record Added!");
-                        }
-                    });
-                    req.shortURL = shortURL;
-                    next();
-                } else {
-                    req.shortURL = data.short_url;
-                    next();
-                }
-            }
-        });
-    }
-}, (req, res) => {
-    var originalURL = req.body.url;
-    var regex = /^http:\/\/www\.[\w.-]+\.com$/;
-    if(regex.test(originalURL)) {
-        res.json({
-            "original_url": originalURL,
-            "short_url": req.shortURL
-        });
-    } else {
-        res.json({
-            "error": "Invalid URL"
-        });
-    }
 });
 
 var listener = app.listen(process.env.PORT, () => {
