@@ -1,0 +1,29 @@
+{
+  "name": "weatherapp",
+  "version": "1.0.0",
+  "description": "Weather Application",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GaurisankarJ/Node.git"
+  },
+  "keywords": [
+    "weather"
+  ],
+  "author": "Sankar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GaurisankarJ/Node/issues"
+  },
+  "homepage": "https://github.com/GaurisankarJ/Node#readme",
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  },
+  "dependencies": {
+    "request": "^2.88.0"
+  }
+}
