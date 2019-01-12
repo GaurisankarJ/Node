@@ -10,6 +10,8 @@
 
 >https://maps.googleapis.com/maps/api/geocode/json?address=Padamughal,%20Kochi,%20Kerala%20682037&key=AIzaSyA3s19w7EkQi0xOLdZGKQmdFH7-1_2Mtq0
 
+>https://api.darksky.net/forecast/1f1fd33ed48673a03a1823e2423118c4/lat,lng
+
 ### Google API Key
 
 >AIzaSyA3s19w7EkQi0xOLdZGKQmdFH7-1_2Mtq0
