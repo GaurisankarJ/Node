@@ -1,0 +1,32 @@
+{
+  "name": "nodewebserver",
+  "version": "1.0.0",
+  "description": "Node Web Server",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GaurisankarJ/Node.git"
+  },
+  "keywords": [
+    "server"
+  ],
+  "author": "Sankar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GaurisankarJ/Node/issues"
+  },
+  "homepage": "https://github.com/GaurisankarJ/Node#readme",
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "express": "^4.16.4",
+    "hbs": "^4.0.1",
+    "yargs": "^12.0.5"
+  }
+}
