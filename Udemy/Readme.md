@@ -11,6 +11,7 @@ process //Similar to "document" of JS
 process.exit(0) //To exit Node console
 node inspect <file_name> //To debug application in CLI
 node --inspect-brk <file_name> //To debug application in Chrome Dev Tools
+nodemon main.js -e js,hbs,<whatever extensions you wanna watch> //For handlebars
 ```
 
 >To access Chrome Dev Tools, chrome://inspect/

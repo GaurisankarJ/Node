@@ -1,0 +1,33 @@
+{
+  "name": "nodetests",
+  "version": "1.0.0",
+  "description": "Node Testing",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha **/*.test.js",
+    "test-start": "nodemon --exec 'npm test'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GaurisankarJ/Node.git"
+  },
+  "keywords": [
+    "test"
+  ],
+  "author": "Sankar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GaurisankarJ/Node/issues"
+  },
+  "homepage": "https://github.com/GaurisankarJ/Node#readme",
+  "devDependencies": {
+    "expect": "^1.20.2",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.9",
+    "rewire": "^4.0.1",
+    "supertest": "^3.3.0"
+  },
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}

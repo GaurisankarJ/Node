@@ -1,0 +1,29 @@
+{
+  "name": "nodetodoapi",
+  "version": "1.0.0",
+  "description": "ToDo Application",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GaurisankarJ/Node.git"
+  },
+  "keywords": [
+    "database"
+  ],
+  "author": "Sankar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GaurisankarJ/Node/issues"
+  },
+  "homepage": "https://github.com/GaurisankarJ/Node#readme",
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "mongodb": "^3.1.10"
+  }
+}
