@@ -44,3 +44,9 @@ heroku config:get <key>
 >JWT, JSON Web Tokens, Ref: https://jwt.io/, https://github.com/auth0/node-jsonwebtoken#token-expiration-exp-claim
 
 >"x-" in front is used to define custom headers
+
+## Testing
+
+>JestJS Expect, Ref: https://jest-bot.github.io/jest/docs/expect.html
+
+>MJackson Expect, "expect": "^1.20.2"

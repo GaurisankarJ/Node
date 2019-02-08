@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/GaurisankarJ/Node#readme",
   "devDependencies": {
-    "expect": "^1.20.2",
+    "expect": "^24.0.0",
     "mocha": "^5.2.0",
     "nodemon": "^1.18.9",
     "supertest": "^3.3.0"

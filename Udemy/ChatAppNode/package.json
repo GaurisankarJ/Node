@@ -1,0 +1,23 @@
+{
+  "name": "chatappnode",
+  "version": "1.0.0",
+  "description": "Chat Application Node",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GaurisankarJ/Node.git"
+  },
+  "keywords": [
+    "chat",
+    "node"
+  ],
+  "author": "Sankar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GaurisankarJ/Node/issues"
+  },
+  "homepage": "https://github.com/GaurisankarJ/Node#readme"
+}

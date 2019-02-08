@@ -2,7 +2,7 @@ const express = require("express");
 const hbs = require("hbs");
 const fs = require("fs");
 
-const port = process.env.PORT || 3000;//For heroku
+const port = process.env.PORT || 3001;//For heroku
 const app = express();
 
 hbs.registerPartials(__dirname + "/views/partials");//To use partials while templating

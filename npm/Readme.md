@@ -137,3 +137,12 @@ mongod --dbpath <path to data directory>
 ```
 mongo
 ```
+
+# NPMJS Errors
+
+## https://docs.npmjs.com/common-errors, 
+## https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally
+
+# NVM
+
+# https://www.sitepoint.com/quick-tip-multiple-versions-node-nvm/
