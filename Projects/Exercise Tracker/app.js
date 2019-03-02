@@ -83,6 +83,7 @@ app.post("/api/exercise/add", (req, res) => {
 });
 app.get("/api/exercise/log", (req, res) => {
     var userId = req.query.userId;
+    console.log(userId);
     var from = req.query.from;
     var to = req.query.to;
     var limit = parseInt(req.query.limit);
@@ -91,9 +92,10 @@ app.get("/api/exercise/log", (req, res) => {
         if(err) {
             console.log(err);
         }
+        console.log(data);
         var result = data.filter((entry) => {
             if(from != undefined && to != undefined) {
-                if(new Date(entry.date).getTime() >= new Date(from).getTime() && new Date(entry.date).getTime() <= new Date(to).getTime()) {
+                if (new Date(entry.date).getTime() >= new Date(from).getTime() && new Date(entry.date).getTime() <= new Date(to).getTime()) {
                     return entry;
                 } 
             } else if (from != undefined) {
@@ -106,6 +108,7 @@ app.get("/api/exercise/log", (req, res) => {
                 }
             }
         });
+        console.log(result);
         res.send(result);
     });
 });
