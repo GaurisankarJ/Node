@@ -1,1 +1,11 @@
-# API's and Microservices
+# Reference
+
+- ## Udemy, NodeJS Intro
+
+- ## npm, Intro
+
+- ## QA, Testing Intro
+
+- ## HelmetJS, Security Intro
+
+- ## Projects, Misc
