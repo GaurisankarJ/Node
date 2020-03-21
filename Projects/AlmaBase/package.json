@@ -2,9 +2,9 @@
   "name": "almabase",
   "version": "1.0.0",
   "description": "",
-  "main": "server/index.js",
+  "main": "server/app.js",
   "scripts": {
-    "start": "nodemon server/server.js"
+    "start": "nodemon server/app.js"
   },
   "author": "",
   "license": "ISC",

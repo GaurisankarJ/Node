@@ -8,6 +8,8 @@ const bodyParser = require("body-parser");
 const fs = require("fs");
 // Morgan Logger
 const logger = require("morgan");
+// Routes
+const route = require("./routes");
 
 // Create Express app
 const app = express();
@@ -20,10 +22,16 @@ app.use(bodyParser.json());
 app.use(logger("combined", {
     stream: fs.createWriteStream("./server/logs/server.log", { flags: "a" })
 }));
-// Use the routes
-app.use("/api", routes);
+// Use the route
+app.use("/", route);
 
-// Export app
-export default app;
+// HTTP/1
+app.listen(3000, () => {
+    // console.log("(HTTP)Server running on port 3000");
+});
 
-console.log("Executing Server: app.js ...");
+// Export Express app
+module.exports = app;
+
+// console.log("Executing Server: app.js ...");
+// console.log("");
