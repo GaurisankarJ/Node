@@ -8,13 +8,11 @@ const bodyParser = require("body-parser");
 const fs = require("fs");
 // Morgan Logger
 const logger = require("morgan");
-// Axios Promised Based Http Client
-const axios = require("axios");
 
 // ###################################################################
 // Routes
 // ###################################################################
-const { getRepos } = require("./routes/getRepos.js");
+const { getRepos } = require("./routes/gitController.js");
 // ###################################################################
 
 // Create Express app
@@ -39,4 +37,3 @@ app.get("/:org", (req, res) => getRepos(req, res));
 const listener = app.listen(PORT, () => {
     console.log(`(HTTP)Server running on port ${listener.address().port}!`);
 });
-
